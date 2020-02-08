@@ -3,7 +3,6 @@ public class MovieSet {
     private int[] adjRooms;
     private String name;
     private Scene scene;
-    private boolean faceUp;
     private int shotCount;
     private int shotMax;
 
@@ -29,14 +28,6 @@ public class MovieSet {
 
     public void setScene(Scene scene) {
         //TODO
-    }
-
-    public boolean isFaceUp() {
-        return faceUp;
-    }
-
-    public void setFaceUp(boolean faceUp) {
-        this.faceUp = faceUp;
     }
 
     public int getShotCount() {
