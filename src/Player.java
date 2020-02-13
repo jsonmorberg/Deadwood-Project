@@ -1,5 +1,6 @@
 
 public class Player {
+    private String name;
     private int money;
     private int credit;
     private int rank;
@@ -73,5 +74,13 @@ public class Player {
 
     public void setOnRole(boolean onRole) {
         //TODO
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
