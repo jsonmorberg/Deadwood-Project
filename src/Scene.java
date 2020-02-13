@@ -1,26 +1,37 @@
-public class Scene {
-    private int cardNum;
-    private int budget;
-    private Role[] roles;
-    private boolean used;
+import java.util.ArrayList;
 
-    public Scene(int cardNum, int budget, Role[] roles) {
-        //TODO
+public class Scene {
+    private int sceneNum;
+    private String sceneName;
+    private String description;
+    private int budget;
+    private ArrayList<Role> roles;
+
+    public Scene(int sceneNum, String sceneName, String description, int budget, ArrayList<Role> roles) {
+        this.sceneNum = sceneNum;
+        this.sceneName = sceneName;
+        this.description = description;
+        this.budget = budget;
+        this.roles = roles;
+    }
+
+    public int getSceneNum() {
+        return this.sceneNum;
+    }
+
+    public String getSceneName() {
+        return this.sceneName;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     public int getBudget() {
-        return budget;
+        return this.budget;
     }
 
-    public Role[] getRoles() {
-        return roles;
-    }
-
-    public boolean isUsed() {
-        return used;
-    }
-
-    public void setUsed(boolean used) {
-        this.used = used;
+    public ArrayList<Role> getRoles() {
+        return this.roles;
     }
 }

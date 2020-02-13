@@ -1,39 +1,57 @@
 public class Role {
     private String name;
+    private String quote;
     private boolean extra;
-    private String actor;
+    private String actor = null;
     private int rank;
-    private boolean taken;
+    private boolean taken = false;
 
-    public Role(String name, boolean extra, int rank) {
-        //TODO
+    //constructor
+    public Role(String name, String quote, boolean extra, int rank) {
+        this.name = name;
+        this.quote = quote;
+        this.extra = extra;
+        this.rank = rank;
+    }
+
+    public int getRank() {
+        return this.rank;
     }
 
     public String getName() {
-        return name;
+        return this.name;
+    }
+
+    public String getQuote() {
+        return this.quote;
     }
 
     public boolean isExtra() {
-        return extra;
+        return this.extra;
+    }
+
+    public boolean isTaken() {
+        return this.taken;
     }
 
     public String getActor() {
-        return actor;
+        return this.actor;
+    }
+
+    public void takeRole() {
+        this.taken = true;
+    }
+
+    public void leaveRole(){
+        this.taken = false;
     }
 
     public void setActor(String actor) {
         this.actor = actor;
     }
-
-    public int getRank() {
-        return rank;
-    }
-
-    public boolean isTaken() {
-        return taken;
-    }
-
-    public void setTaken(boolean taken) {
-        this.taken = taken;
-    }
 }
+
+
+
+
+
