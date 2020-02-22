@@ -1,8 +1,9 @@
+/** Stores information regarding the various roles */
+
 public class Role {
     private String name;
     private String quote;
     private boolean extra;
-    private String actor = null;
     private int rank;
     private boolean taken = false;
 
@@ -34,20 +35,12 @@ public class Role {
         return this.taken;
     }
 
-    public String getActor() {
-        return this.actor;
-    }
-
     public void takeRole() {
         this.taken = true;
     }
 
     public void leaveRole(){
         this.taken = false;
-    }
-
-    public void setActor(String actor) {
-        this.actor = actor;
     }
 }
 

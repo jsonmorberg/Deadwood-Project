@@ -1,12 +1,14 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
+
+/** Generates scenes using the Parser.class and keeps an array that can randomly generate all 40 scenes for the board */
 
 import org.w3c.dom.Document;
 
 public class SceneGenerator {
     private ArrayList<Scene> scenes; //NOTE: Scene array will be generated from XML
 
+    //constructor uses Parser.class to look through XML
     public SceneGenerator(){
         Document doc = null;
         Parser parsing = new Parser();
@@ -24,21 +26,10 @@ public class SceneGenerator {
         return n;
     }
 
+    //Returns a brand new scene and removes it from the generation array
     public Scene getScene(){
         int randNum = roll();
-        Scene scene = scenes.get(randNum);
+        Scene scene = scenes.remove(randNum);
         return scene;
-    }
-
-    public void removeScene(int sceneNum){
-        Iterator<Scene> scan = this.scenes.iterator();
-        boolean flag = true;
-        while (flag){
-            Scene scene = scan.next();
-            if(scene.getSceneNum() == sceneNum){
-                scan.remove();
-                flag = false;
-            }
-        }
     }
 }

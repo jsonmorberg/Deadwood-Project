@@ -5,11 +5,12 @@ import java.util.ArrayList;
 public class Board {
     private SceneGenerator sceneGenerator = new SceneGenerator();
     private ArrayList<MovieSet> sets;
-    private int activeRooms = 10;
+    private static int activeRooms = 10;
     private int rooms = 12;
-    private boolean dayOver = false;
+    private int days;
 
-    public void createBoard(){
+    public Board(int days){
+        this.days = days;
         Document doc = null;
         Parser parsing = new Parser();
         try{
@@ -20,6 +21,8 @@ public class Board {
         }catch (Exception e){
             System.out.println("Error = " + e);
         }
+
+        this.AdjRooms();
     }
 
     public void AdjRooms(){
@@ -28,18 +31,21 @@ public class Board {
         train[1] = sets.get(6);
         train[2] = sets.get(11);
         sets.get(0).setAdjRooms(train);
+        sets.get(0).setScene(sceneGenerator.getScene());
 
         MovieSet[] secret = new MovieSet[3];
         secret[0] = sets.get(2);
         secret[1] = sets.get(7);
         secret[2] = sets.get(11);
         sets.get(1).setAdjRooms(secret);
+        sets.get(1).setScene(sceneGenerator.getScene());
 
         MovieSet[] church = new MovieSet[3];
         church[0] = sets.get(1);
         church[1] = sets.get(8);
         church[2] = sets.get(3);
         sets.get(2).setAdjRooms(church);
+        sets.get(2).setScene(sceneGenerator.getScene());
 
 
         MovieSet[] hotel = new MovieSet[3];
@@ -47,18 +53,21 @@ public class Board {
         hotel[1] = sets.get(8);
         hotel[2] = sets.get(2);
         sets.get(3).setAdjRooms(hotel);
+        sets.get(3).setScene(sceneGenerator.getScene());
 
         MovieSet[] mainSt = new MovieSet[3];
         mainSt[0] = sets.get(10);
         mainSt[1] = sets.get(5);
         mainSt[2] = sets.get(9);
         sets.get(4).setAdjRooms(mainSt);
+        sets.get(4).setScene(sceneGenerator.getScene());
 
         MovieSet[] jail = new MovieSet[3];
         jail[0] = sets.get(4);
         jail[1] = sets.get(6);
         jail[2] = sets.get(0);
         sets.get(5).setAdjRooms(jail);
+        sets.get(5).setScene(sceneGenerator.getScene());
 
         MovieSet[] general = new MovieSet[4];
         general[0] = sets.get(7);
@@ -66,6 +75,7 @@ public class Board {
         general[2] = sets.get(5);
         general[3] = sets.get(9);
         sets.get(6).setAdjRooms(general);
+        sets.get(6).setScene(sceneGenerator.getScene());
 
         MovieSet[] ranch = new MovieSet[4];
         ranch[0] = sets.get(11);
@@ -73,6 +83,7 @@ public class Board {
         ranch[2] = sets.get(1);
         ranch[3] = sets.get(8);
         sets.get(7).setAdjRooms(ranch);
+        sets.get(7).setScene(sceneGenerator.getScene());
 
         MovieSet[] bank = new MovieSet[4];
         bank[0] = sets.get(9);
@@ -80,6 +91,7 @@ public class Board {
         bank[2] = sets.get(7);
         bank[3] = sets.get(3);
         sets.get(8).setAdjRooms(bank);
+        sets.get(8).setScene(sceneGenerator.getScene());
 
         MovieSet[] saloon = new MovieSet[4];
         saloon[0] = sets.get(4);
@@ -87,6 +99,7 @@ public class Board {
         saloon[2] = sets.get(8);
         saloon[3] = sets.get(10);
         sets.get(9).setAdjRooms(saloon);
+        sets.get(9).setScene(sceneGenerator.getScene());
 
         MovieSet[] trailer = new MovieSet[3];
         trailer[0] = sets.get(4);
@@ -103,24 +116,35 @@ public class Board {
 
     public void resetBoard(){
         activeRooms = 10;
-        dayOver = false;
         for (MovieSet set : sets){
-            set.resetRoom(sceneGenerator.getScene());
-        }
-    }
+            if(!(set.getName().equals("Casting Office") || set.getName().equals("Trailer"))){
+                set.resetRoom(sceneGenerator.getScene());
+            }
 
-    public boolean isDayOver() {
-        return dayOver;
+        }
     }
 
     public int getActiveScenes() {
         return activeRooms;
     }
 
-    public void updateActiveScenes() {
+    public static void updateActiveScenes() {
         activeRooms--;
-        if(activeRooms == 1){
-            dayOver = true;
-        }
     }
+
+    public static void endDay(){
+        activeRooms = 1;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void updateDays(){
+        days--;
+    }
+
+    public MovieSet getTrailer(){
+        return sets.get(10);
+    } //CHANGE
 }

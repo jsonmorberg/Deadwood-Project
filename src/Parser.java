@@ -1,17 +1,17 @@
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
-
-
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
-
 import java.util.ArrayList;
+
+/** Class that parses through both Cards.XMl and Board.XML to generate the rooms, scenes, and roles required to play the game */
 
 public class Parser {
 
+    //creates doc object to parse through the XMl files
     public Document getDocFromFile(String filename) throws ParserConfigurationException {
         {
 
@@ -30,12 +30,13 @@ public class Parser {
 
     }
 
+    //Parses and creates an ArrayList of Scenes using Cards.XML
     public ArrayList<Scene> readCardData(Document d) {
 
         Element root = d.getDocumentElement();
 
         ArrayList<Scene> scenes = new ArrayList<Scene>();
-        ArrayList<Role> roles = new ArrayList<Role>();
+
 
         NodeList cards = root.getElementsByTagName("card");
         for (int i = 0; i < cards.getLength(); i++) {
@@ -50,7 +51,7 @@ public class Parser {
             sceneBudget = card.getAttributes().getNamedItem("budget").getNodeValue();
 
             NodeList children = card.getChildNodes();
-
+            ArrayList<Role> roles = new ArrayList<Role>();
             for (int j = 0; j < children.getLength(); j++) {
 
                 Node sub = children.item(j);
@@ -71,17 +72,17 @@ public class Parser {
                 }
             }
             scenes.add(new Scene(Integer.parseInt(sceneNum), sceneName, description, Integer.parseInt(sceneBudget), roles));
-            roles.clear();
         }
         return scenes;
     }
 
+    //Parses and creates an ArrayList of MovieSets using Board.XML including the roles required
     public ArrayList<MovieSet> readBoardData(Document d) {
 
         Element root = d.getDocumentElement();
 
         ArrayList<MovieSet> movieSets = new ArrayList<MovieSet>();
-        ArrayList<Role> roles = new ArrayList<Role>();
+
 
         NodeList sets = root.getElementsByTagName("set");
         for (int i = 0; i < sets.getLength(); i++) {
@@ -94,6 +95,7 @@ public class Parser {
             setName = set.getAttributes().getNamedItem("name").getNodeValue();
 
             NodeList children = set.getChildNodes();
+            ArrayList<Role> roles = new ArrayList<Role>();
 
             for (int j = 0; j < children.getLength(); j++) {
 
@@ -126,7 +128,6 @@ public class Parser {
                 }
             }
             movieSets.add(new MovieSet(setName, Integer.parseInt(takeNum), roles));
-            roles.clear();
         }
         return movieSets;
     }
