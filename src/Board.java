@@ -2,6 +2,8 @@ import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 
+/** Class that keeps track of the days and active rooms in the game */
+
 public class Board {
     private SceneGenerator sceneGenerator = new SceneGenerator();
     private ArrayList<MovieSet> sets;
@@ -9,6 +11,7 @@ public class Board {
     private int rooms = 12;
     private int days;
 
+    //Constructor for board, uses XML to create Rooms and Roles
     public Board(int days){
         this.days = days;
         Document doc = null;
@@ -25,6 +28,7 @@ public class Board {
         this.AdjRooms();
     }
 
+    //Helper method to fully set up the rooms in Board
     public void AdjRooms(){
         MovieSet[] train = new MovieSet[3];
         train[0] = sets.get(5);
@@ -144,7 +148,8 @@ public class Board {
         days--;
     }
 
-    public MovieSet getTrailer(){
+    //to set players back to trailer
+    public MovieSet getTrailer() {
         return sets.get(10);
-    } //CHANGE
+    }
 }
