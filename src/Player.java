@@ -44,7 +44,7 @@ public class Player {
         //Meets budget
         }else{
             System.out.println("Scenes budget was " + this.room.getScene().getBudget() + ", your score was " + (roll + this.rehearsal) + " (rehearsal tokens + rolls)\n");
-            System.out.println("You met budget, so a shot has been taken! " + this.room.getShotCount() + " shots left");
+            System.out.println("You met budget, so a shot has been taken! " + (this.room.getShotCount()-1) + " shots left");
             if(this.role.isExtra()){
                 this.credit++;
                 this.money++;
