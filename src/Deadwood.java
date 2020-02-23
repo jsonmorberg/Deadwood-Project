@@ -7,7 +7,6 @@ public class Deadwood {
     public static void main(String[] args){
         int playerNum = 0;
 
-
         if (args.length != 1){
             System.out.println ("Incorrect number of arguments! Please input number of players");
             System.exit(1);
@@ -23,7 +22,6 @@ public class Deadwood {
             System.out.println("Incorrect input type! Please input number of players");
             System.exit(1);
         }
-
 
         System.out.println("Welcome to DEADWOOD!");
 
@@ -65,7 +63,7 @@ public class Deadwood {
     private static void startGame(){
 
         while(board.getDays() > 0){
-            System.out.println(board.getDays() + " day(s) left till the game is over!");
+            System.out.println(board.getDays() + " DAY(S) LEFT!");
             while (board.getActiveScenes() > 1){
                 Player currentPlayer = players.poll();
                 System.out.println("It is now " + currentPlayer.getName() +"'s turn");
@@ -81,7 +79,7 @@ public class Deadwood {
                 }
             }
         }
-        System.out.println("Last day is now over");
+        System.out.println("Last day is now over\nGAME OVER!");
         endGame();
     }
 
@@ -117,7 +115,7 @@ public class Deadwood {
             }
             System.out.print("won!");
         }else{
-            System.out.println(winner.get(0) + "won!");
+            System.out.println(winner.get(0).getName() + " won!");
         }
     }
 }

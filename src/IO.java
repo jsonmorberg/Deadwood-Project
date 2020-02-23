@@ -28,10 +28,12 @@ public class IO {
                         System.out.println("Here are the rooms you can move to:");
                         for (int i = 0; i < choices.length; i++) {
                             String status = "";
-                            if (choices[i].isActive()) {
-                                status = "(Active)";
-                            } else {
-                                status = "(Unactive)";
+                            if(!(choices[i].getName().equals("Casting Office") || choices[i].getName().equals("Trailer"))){
+                                if (choices[i].isActive()) {
+                                    status = "(Active) " + choices[i].getScene().getSceneName();
+                                } else {
+                                    status = "(Unactive)";
+                                }
                             }
                             System.out.println("\t" + (i + 1) + ". " + choices[i].getName() + " " + status);
                         }
@@ -120,6 +122,8 @@ public class IO {
                     HashMap<Integer, int[]> choices = new HashMap<>();
                     for (int i = 0; i < prices.length; i++) {
                         if (currentPlayer.getRank() < prices[i][0]) {
+
+                            //Credit upgrades
                             if (currentPlayer.getCredit() >= prices[i][2]) {
                                 upgrade++;
                                 System.out.println("\t" + upgrade + ". Rank " + prices[i][0] + " with " + prices[i][2] + " credits.");
@@ -129,6 +133,8 @@ public class IO {
                                 creditCount++;
                                 choices.put(upgrade, new int[]{0, prices[i][0], prices[i][2]});
                             }
+
+                            //Money upgrades
                             if (currentPlayer.getMoney() >= prices[i][1]) {
                                 upgrade++;
                                 System.out.println("\t" + upgrade + ". Rank " + prices[i][0] + " with " + prices[i][1] + " dollars.");
@@ -149,7 +155,6 @@ public class IO {
                         try {
                             int upgradeChoice = input.nextInt();
                             if (upgradeChoice < 1 || upgradeChoice > upgrade) {
-                                //bad
                             } else if (upgradeChoice == upgrade) {
                                 System.out.println("You have decided to not upgrade.");
                                 input.nextLine();
@@ -201,6 +206,8 @@ public class IO {
                         int roleChoice = 0;
                         HashMap<Integer, Role> roleOptions = new HashMap<Integer, Role>();
                         System.out.println("Here are the roles you can choose from! \n");
+
+                        //extra roles
                         if(availableRoomRoles.size() > 0){
                             for(Role role : availableRoomRoles){
                                 roleChoice++;
@@ -208,6 +215,8 @@ public class IO {
                                 roleOptions.put(roleChoice, role);
                             }
                         }
+
+                        //main roles
                         if(availableSceneRoles.size() > 0){
                             for(Role role : availableSceneRoles){
                                 roleChoice++;
@@ -224,7 +233,6 @@ public class IO {
                             try {
                                 int roleInput = input.nextInt();
                                 if (roleInput < 1 || roleInput > roleChoice) {
-                                    //bad
                                 } else if (roleInput == roleChoice) {
                                     System.out.println("You have decided to not take a role.");
                                     input.nextLine();
@@ -265,7 +273,7 @@ public class IO {
             }else if(choice.toLowerCase().equals("where")) {
                 System.out.println("You are currently at " + currentPlayer.getRoom().getName());
                 for (Player player : players) {
-                    if (!player.getName().equals(currentPlayer.getName())) {
+                    if (!player.equals(currentPlayer)) {
                         System.out.println(player.getName() + " is at " + player.getRoom().getName());
                     }
                 }
