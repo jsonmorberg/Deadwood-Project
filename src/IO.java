@@ -72,7 +72,34 @@ public class IO {
                 if(working == true){
                     if(moved == false){
                         if(worked == false){
-                            currentPlayer.act();
+                            System.out.println("Current Room: " + currentPlayer.getRoom().getName() + "\nShots left: " + currentPlayer.getRoom().getShotCount());
+                            int roll = Dice.roll();
+                            System.out.println("You rolled a " + roll);
+
+                            //Does not meet budget
+                            if(roll + currentPlayer.getRehearsal() < currentPlayer.getRoom().getScene().getBudget()){
+                                System.out.println("Scenes budget was " + currentPlayer.getRoom().getScene().getBudget() + ", your score was " + (roll + currentPlayer.getRehearsal()) + " (rehearsal tokens + rolls)\n");
+                                System.out.println("You did not meet budget, no shots are taken");
+                                if(currentPlayer.getRole().isExtra()){
+                                    currentPlayer.setMoney(currentPlayer.getMoney() + 1);
+                                    System.out.println("Since you had an Extra role, you receive one dollar, you now have " + currentPlayer.getMoney());
+                                }
+
+                                //Meets budget
+                            }else{
+                                System.out.println("Scenes budget was " + currentPlayer.getRoom().getScene().getBudget() + ", your score was " + (roll + currentPlayer.getRehearsal()) + " (rehearsal tokens + rolls)\n");
+                                System.out.println("You met budget, so a shot has been taken! " + (currentPlayer.getRoom().getShotCount()-1) + " shots left");
+                                if(currentPlayer.getRole().isExtra()){
+                                    currentPlayer.setCredit(currentPlayer.getCredit() + 1);
+                                    currentPlayer.setMoney(currentPlayer.getMoney() + 1);
+                                    System.out.println("Since you had an Extra role, you receive one dollar and one credit, you now have " + currentPlayer.getMoney()+ " dollars and " + currentPlayer.getCredit() + " credits");
+
+                                }else{
+                                    currentPlayer.setCredit(currentPlayer.getCredit() + 2);
+                                    System.out.println("Since you had a Main role, you receive two credits, you now have " + currentPlayer.getCredit()+ " credits");
+                                }
+                                currentPlayer.getRoom().takeShot();
+                            }
                             working = currentPlayer.isOnRole();
                             worked = true;
                         }else{

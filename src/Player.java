@@ -10,7 +10,6 @@ public class Player {
     private MovieSet room;
     private int rehearsal;
     private boolean onRole = false;
-    private Dice dice = new Dice();
 
 
     public Player(String name, int credit, int rank, MovieSet room) {
@@ -23,39 +22,6 @@ public class Player {
     //move player to a new destination
     public void move(MovieSet choice) {
         this.room = choice;
-    }
-
-    //rolls dice to calculate if a player can take off a shot counter
-    public void act() {
-        Scene scene = this.room.getScene();
-        System.out.println("Current Room: " + this.room.getName() + "\nShots left: " + this.room.getShotCount());
-        int roll = Dice.roll();
-        System.out.println("You rolled a " + roll);
-
-        //Does not meet budget
-        if(roll + this.rehearsal < this.room.getScene().getBudget()){
-            System.out.println("Scenes budget was " + this.room.getScene().getBudget() + ", your score was " + (roll + this.rehearsal) + " (rehearsal tokens + rolls)\n");
-            System.out.println("You did not meet budget, no shots are taken");
-            if(this.role.isExtra()){
-                this.money++;
-                System.out.println("Since you had an Extra role, you receive one dollar, you now have " + this.money);
-            }
-
-        //Meets budget
-        }else{
-            System.out.println("Scenes budget was " + this.room.getScene().getBudget() + ", your score was " + (roll + this.rehearsal) + " (rehearsal tokens + rolls)\n");
-            System.out.println("You met budget, so a shot has been taken! " + (this.room.getShotCount()-1) + " shots left");
-            if(this.role.isExtra()){
-                this.credit++;
-                this.money++;
-                System.out.println("Since you had an Extra role, you receive one dollar and one credit, you now have " + this.money + " dollars and " + this.credit + " credits");
-
-            }else{
-                this.credit += 2;
-                System.out.println("Since you had a Main role, you receive two credits, you now have " + this.credit + " credits");
-            }
-            this.room.takeShot();
-        }
     }
 
     public void rehearsal() {

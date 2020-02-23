@@ -8,7 +8,6 @@ public class Board {
     private SceneGenerator sceneGenerator = new SceneGenerator();
     private ArrayList<MovieSet> sets;
     private static int activeRooms = 10;
-    private int rooms = 12;
     private int days;
 
     //Constructor for board, uses XML to create Rooms and Roles
@@ -24,7 +23,6 @@ public class Board {
         }catch (Exception e){
             System.out.println("Error = " + e);
         }
-
         this.AdjRooms();
     }
 
@@ -134,10 +132,6 @@ public class Board {
 
     public static void updateActiveScenes() {
         activeRooms--;
-    }
-
-    public static void endDay(){
-        activeRooms = 1;
     }
 
     public int getDays() {
