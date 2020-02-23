@@ -1,5 +1,9 @@
 # Deadwood Project
 
+Deadwood is a fast-paced board game about actors, acting, and
+the thrill-filled life of a wandering bit player. It’s perfect for 2 to
+6 players, still decent with 7 or 8. Play time is about 60 minutes.
+
 Deadwood is a project worked on by Jayson Morberg & Isaac Simon
 
 Deadwood.java contains the main function to run the code, and takes a single 
@@ -8,6 +12,12 @@ parameter to run (The number of players)!
 Example: 
 java Deadwood 8
 "Welcome to DEADWOOD!"
+
+# How to Play
+
+This terminal version of the board game Deadwood uses terminal commands to move
+around the board and act! Below is a complete list of the commands a player can 
+make on their turn (depending on where they are or if they're working!)
 
 * move - Displays a list of Rooms you can move into if you are not working, chose room by entering corresponding number
 * take role - Displays available roles in the room you are currently in if you are not already working
