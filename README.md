@@ -21,6 +21,7 @@ make on their turn (depending on where they are or if they're working!)
 * take role - Displays available roles in the room you are currently in if you are not already working
 * act - Rolls a dice to see if you can take a shot counter off a room, you can only work once per turn
 * rehearse - Gives a +1 to dice rolls on that role, you can only work once per turn
+* upgrade - Lists all avaliable upgrades to player that they can exchange Credits and Money for (Can only upgrade in Casting Office)
 * where - Displays all current players and their positions
 * who - Displays current active player and their stats
 * end - Ends turn 
