@@ -56,7 +56,7 @@ public class Deadwood extends Application {
         }
 
         int credit = 0;
-        int rank = 6;
+        int rank = 1;
 
         switch(playerNum){
             case 5:
