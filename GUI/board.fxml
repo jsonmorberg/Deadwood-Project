@@ -234,7 +234,7 @@
             </Lighting>
          </effect>
       </Button>
-      <TextArea fx:id="output" editable="false" layoutX="1137.0" layoutY="107.0" prefHeight="275.0" prefWidth="294.0" text="WELCOME TO DEADWOOD">
+      <TextArea fx:id="output" editable="false" layoutX="1137.0" layoutY="107.0" prefHeight="275.0" prefWidth="294.0" text="WELCOME TO DEADWOOD" wrapText="true">
          <effect>
             <InnerShadow choke="0.44" />
          </effect>

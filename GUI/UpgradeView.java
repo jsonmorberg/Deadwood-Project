@@ -1,6 +1,7 @@
 package GUI;
 
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -38,15 +39,35 @@ public class UpgradeView {
         });
 
         rank4Money.setOnAction(e->{
-            CastingOffice.upgrade(new int[]{1, 4, 4}, player);
+            CastingOffice.upgrade(new int[]{1, 4, 18}, player);
         });
 
         rank5Money.setOnAction(e->{
-            CastingOffice.upgrade(new int[]{1, 5, 4}, player);
+            CastingOffice.upgrade(new int[]{1, 5, 28}, player);
         });
 
         rank6Money.setOnAction(e->{
-            CastingOffice.upgrade(new int[]{1, 6, 4}, player);
+            CastingOffice.upgrade(new int[]{1, 6, 40}, player);
+        });
+
+        rank2Credit.setOnAction(e->{
+            CastingOffice.upgrade(new int[]{0, 2, 5}, player);
+        });
+
+        rank3Credit.setOnAction(e->{
+            CastingOffice.upgrade(new int[]{0, 3, 10}, player);
+        });
+
+        rank4Credit.setOnAction(e->{
+            CastingOffice.upgrade(new int[]{0, 4, 15}, player);
+        });
+
+        rank5Credit.setOnAction(e->{
+            CastingOffice.upgrade(new int[]{0, 5, 20}, player);
+        });
+
+        rank6Credit.setOnAction(e->{
+            CastingOffice.upgrade(new int[]{0, 6, 25}, player);
         });
 
         if(player.getMoney() < 4){
@@ -89,22 +110,48 @@ public class UpgradeView {
             rank6Credit.setDisable(true);
         }
 
+        Button one = new Button("2");
+        Button two = new Button("3");
+        Button three = new Button("4");
+        Button four = new Button("5");
+        Button five = new Button("6");
+
+        one.setDisable(true);
+        two.setDisable(true);
+        three.setDisable(true);
+        four.setDisable(true);
+        five.setDisable(true);
+
         Label labelMoney = new Label();
-        labelMoney.setText("Main Roles");
+        labelMoney.setText("Money");
 
         Label labelCredit = new Label();
-        labelCredit.setText("Extra Roles");
+        labelCredit.setText("Credit");
+
+        Label labelRanks = new Label();
+        labelCredit.setText("Credit");
+
+        VBox ranks = new VBox(10);
+        ranks.getChildren().addAll(labelRanks);
+        ranks.getChildren().addAll(one, two, three, four, five);
 
         VBox layout1 = new VBox(10);
         layout1.getChildren().addAll(labelMoney);
         layout1.setAlignment(Pos.CENTER_RIGHT);
+        layout1.getChildren().addAll(rank2Money, rank3Money, rank4Money, rank5Money, rank6Money);
 
 
         VBox layout2 = new VBox(10);
         layout2.getChildren().addAll(labelCredit);
         layout2.setAlignment(Pos.CENTER_LEFT);
+        layout2.getChildren().addAll(rank2Credit, rank3Credit, rank4Credit, rank5Credit, rank6Credit);
 
-        HBox pane = new HBox();
+        HBox pane = new HBox(10);
+        pane.setAlignment(Pos.CENTER);
+        pane.getChildren().addAll(ranks, layout1, layout2);
+        Scene sceneWindow = new Scene(pane);
+        window.setScene(sceneWindow);
+        window.showAndWait(); //needs to be closed before returning
 
 
 

@@ -66,17 +66,17 @@ public class RoleView {
             main3 = new Button(main.get(2).getName());
 
             main1.setOnAction(e -> {
-                role = offCard.get(0);
+                role = main.get(0);
                 window.close();
             });
 
             main2.setOnAction(e -> {
-                role = offCard.get(1);
+                role = main.get(1);
                 window.close();
             });
 
             main3.setOnAction(e -> {
-                role = offCard.get(2);
+                role = main.get(2);
                 window.close();
             });
 
@@ -112,12 +112,12 @@ public class RoleView {
             main2 = new Button(main.get(1).getName());
 
             main1.setOnAction(e -> {
-                role = offCard.get(0);
+                role = main.get(0);
                 window.close();
             });
 
             main2.setOnAction(e -> {
-                role = offCard.get(1);
+                role = main.get(1);
                 window.close();
             });
 
@@ -170,35 +170,27 @@ public class RoleView {
             if(rank < offCard.get(0).getRank()){
                 extra1.setDisable(true);
             }
-
             if(rank < offCard.get(1).getRank()){
                 extra2.setDisable(true);
             }
-
             if(rank < offCard.get(2).getRank()){
                 extra3.setDisable(true);
             }
-
             if(rank < offCard.get(3).getRank()){
                 extra4.setDisable(true);
             }
-
             if(offCard.get(0).isTaken()){
                 extra1.setDisable(true);
             }
-
             if(offCard.get(1).isTaken()){
                 extra2.setDisable(true);
             }
-
             if(offCard.get(2).isTaken()){
                 extra3.setDisable(true);
             }
-
             if(offCard.get(3).isTaken()){
                 extra4.setDisable(true);
             }
-
             layout2.getChildren().addAll(extra1, extra2, extra3, extra4);
 
         } else if (offCard.size() == 3) {
@@ -224,29 +216,23 @@ public class RoleView {
             if(rank < offCard.get(0).getRank()){
                 extra1.setDisable(true);
             }
-
             if(rank < offCard.get(1).getRank()){
                 extra2.setDisable(true);
             }
-
             if(rank < offCard.get(2).getRank()){
                 extra3.setDisable(true);
             }
-
             if(offCard.get(0).isTaken()){
                 extra1.setDisable(true);
             }
-
             if(offCard.get(1).isTaken()){
                 extra2.setDisable(true);
             }
-
             if(offCard.get(2).isTaken()){
                 extra3.setDisable(true);
             }
-
-
             layout2.getChildren().addAll(extra1, extra2, extra3);
+
         } else if (offCard.size() == 2) {
             extra1 = new Button(offCard.get(0).getName());
             extra2 = new Button(offCard.get(1).getName());
@@ -255,7 +241,6 @@ public class RoleView {
                 role = offCard.get(0);
                 window.close();
             });
-
             extra2.setOnAction(e -> {
                 role = offCard.get(1);
                 window.close();
@@ -264,26 +249,18 @@ public class RoleView {
             if(rank < offCard.get(0).getRank()){
                 extra1.setDisable(true);
             }
-
             if(rank < offCard.get(1).getRank()){
                 extra2.setDisable(true);
             }
-
             if(offCard.get(0).isTaken()){
                 extra1.setDisable(true);
             }
-
             if(offCard.get(1).isTaken()){
                 extra2.setDisable(true);
             }
-
-
-
             layout2.getChildren().addAll(extra1, extra2);
         }
 
-
-            layout1.toFront();
             pane.getChildren().addAll(layout2, layout1);
 
             Scene sceneWindow = new Scene(pane);

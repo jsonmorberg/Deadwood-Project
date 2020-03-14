@@ -61,92 +61,10 @@ public class MovieSet {
 
     public void takeShot(){
         this.shotCount--;
-        if(shotCount < 1){
-            this.deactivateRoom();
-        }
     }
 
     //room has cleared all shots, deal out appropriate bonuses
     public void deactivateRoom() {
-        boolean flag = false;
-
-        ArrayList<Player> current = this.actors;
-        ArrayList<Player> main = new ArrayList<Player>();
-        ArrayList<Role> roles = this.scene.getRoles();
-
-        System.out.println("All shots are done in " + this.name);
-
-        //Filter through all main roles in Set for a main character
-        for (int i = 0; i < roles.size(); i++) {
-            if (roles.get(i).isTaken()) {
-                flag = true;
-            }
-        }
-
-        //main role found
-        if (flag) {
-            System.out.println("There was at least one Player who had a main role, bonus will be distributed!");
-            for (Player player : current) {
-                //Bonuses for Extras
-                if (player.getRole().isExtra()) {
-                    System.out.println(player.getName() + " had an extra role with rank " + player.getRole().getRank() + ", so they get " + player.getRole().getRank() + " dollar(s)");
-                    player.setMoney(player.getMoney() + player.getRole().getRank());
-                }else{
-                    main.add(player);
-                }
-            }
-
-            Queue<Role> sortedRoles = new LinkedList<Role>();
-            while(roles.size() > 0) {
-                Role largestRank = roles.get(0);
-                for (Role role : roles){
-                    if(role.getRank() > largestRank.getRank()){
-                        largestRank = role;
-                    }
-                }
-                sortedRoles.add(largestRank);
-                roles.remove(largestRank);
-            }
-
-
-            //roll dice for bonuses
-            int diceNum = this.scene.getBudget();
-            Random rand = new Random();
-            ArrayList<Integer> diceRolls = new ArrayList<Integer>();
-            for (int i = 0; i < diceNum; i++) {
-                diceRolls.add(rand.nextInt(6) + 1);
-            }
-            Collections.sort(diceRolls, Collections.reverseOrder());
-            System.out.println();
-            System.out.println("This scene had a budget of " + diceNum + ", Bonuses rolled were " + Arrays.toString(diceRolls.toArray()));
-
-
-            //deal out bonuses for each main player
-            HashMap<Role, Integer> bonuses = new HashMap<Role, Integer>();
-            for(Role role : sortedRoles){
-                bonuses.put(role, 0);
-            }
-
-            for(int bonus : diceRolls){
-                Role role = sortedRoles.poll();
-                bonuses.put(role, bonuses.get(role) + bonus);
-                sortedRoles.add(role);
-            }
-
-            for(Role role : bonuses.keySet()){
-                for(Player player : main){
-                    if(player.getRole().equals(role)){
-                        System.out.println(player.getName() + " just got " + bonuses.get(role));
-                        player.setMoney(player.getMoney() + bonuses.get(role));
-                    }
-                }
-            }
-
-
-
-        }else{
-            System.out.println("There were no Players with main roles, so there are no bonuses");
-        }
 
         //remove player from all roles
         for(Player player : actors){
@@ -176,5 +94,13 @@ public class MovieSet {
 
     public boolean isVisited(){
         return visited;
+    }
+
+    public int getShots(){
+        return this.shotCount;
+    }
+
+    public ArrayList<Player> getActors(){
+        return this.actors;
     }
 }

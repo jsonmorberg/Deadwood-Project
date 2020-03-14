@@ -14,13 +14,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.HashMap;
-import java.util.Queue;
+import java.util.*;
 
 import java.awt.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 
 public class BoardController {
@@ -1001,25 +998,141 @@ public class BoardController {
 
 
 
-
-
-
-
-
     @FXML
     private void upgradeButton(ActionEvent event) {
-        System.out.println("Upgrade");
-
+        UpgradeView.display(current);
+        money.setText(String.valueOf(current.getMoney()));
+        credit.setText(String.valueOf(current.getCredit()));
+        rank.setText(String.valueOf(current.getRank()));
     }
 
     @FXML
     private void actButton(ActionEvent event) {
-        System.out.println("Act");
+
+        output.appendText("\n\nCurrent Room: " + current.getRoom().getName() + "\nShots left: " + current.getRoom().getShotCount());
+        Random random = new Random();
+        int roll = random.nextInt(6) + 1;
+        output.appendText("\n\nYou rolled a \" + roll");
+
+        //Does not meet budget
+        if(roll + current.getRehearsal() < current.getRoom().getScene().getBudget()){
+            output.appendText("\n\nScenes budget was " + current.getRoom().getScene().getBudget() + ", your score was " + (roll + current.getRehearsal()) + " (rehearsal tokens + rolls)\n");
+            output.appendText("You did not meet budget, no shots are taken");
+            if(current.getRole().isExtra()){
+                current.setMoney(current.getMoney() + 1);
+                output.appendText("\n\nSince you had an Extra role, you receive one dollar, you now have " + current.getMoney());
+            }
+
+            //Meets budget
+        }else{
+            output.appendText("\n\nScenes budget was " + current.getRoom().getScene().getBudget() + ", your score was " + (roll + current.getRehearsal()) + " (rehearsal tokens + rolls)\n");
+            output.appendText("You met budget, so a shot has been taken! " + (current.getRoom().getShotCount()-1) + " shots left");
+
+            if(current.getRole().isExtra()){
+                current.setCredit(current.getCredit() + 1);
+                current.setMoney(current.getMoney() + 1);
+                output.appendText("\nSince you had an Extra role, you receive one dollar and one credit, you now have " + current.getMoney()+ " dollars and " + current.getCredit() + " credits");
+
+            }else{
+                current.setCredit(current.getCredit() + 2);
+                output.appendText("\nSince you had a Main role, you receive two credits, you now have " + current.getCredit()+ " credits");
+            }
+
+            current.getRoom().takeShot();
+
+            if(current.getRoom().getShots() == 0){
+                boolean flag = false;
+
+                ArrayList<Player> actors = current.getRoom().getActors();
+                ArrayList<Player> main = new ArrayList<Player>();
+                ArrayList<Role> roles = current.getRoom().getScene().getRoles();
+
+                output.appendText("\nAll shots are done in " + current.getRoom().getScene().getSceneName());
+
+                //Filter through all main roles in Set for a main character
+                for (int i = 0; i < roles.size(); i++) {
+                    if (roles.get(i).isTaken()) {
+                        flag = true;
+                    }
+                }
+
+                //main role found
+                if (flag) {
+                    output.appendText("\nThere was at least one Player who had a main role, bonus will be distributed!");
+                    for (Player player : actors) {
+                        //Bonuses for Extras
+                        if (player.getRole().isExtra()) {
+                            output.appendText("\n\n" + player.getName() + " had an extra role with rank " + player.getRole().getRank() + ", so they get " + player.getRole().getRank() + " dollar(s)");
+                            player.setMoney(player.getMoney() + player.getRole().getRank());
+                        }else{
+                            main.add(player);
+                        }
+                    }
+
+                    Queue<Role> sortedRoles = new LinkedList<Role>();
+                    while(roles.size() > 0) {
+                        Role largestRank = roles.get(0);
+                        for (Role role : roles){
+                            if(role.getRank() > largestRank.getRank()){
+                                largestRank = role;
+                            }
+                        }
+                        sortedRoles.add(largestRank);
+                        roles.remove(largestRank);
+                    }
+
+
+                    //roll dice for bonuses
+                    int diceNum = current.getRoom().getScene().getBudget();
+                    Random rand = new Random();
+                    ArrayList<Integer> diceRolls = new ArrayList<Integer>();
+                    for (int i = 0; i < diceNum; i++) {
+                        diceRolls.add(rand.nextInt(6) + 1);
+                    }
+                    Collections.sort(diceRolls, Collections.reverseOrder());
+                    output.appendText("\n\nThis scene had a budget of " + diceNum + ", Bonuses rolled were " + Arrays.toString(diceRolls.toArray()));
+
+
+                    //deal out bonuses for each main player
+                    HashMap<Role, Integer> bonuses = new HashMap<Role, Integer>();
+                    for(Role role : sortedRoles){
+                        bonuses.put(role, 0);
+                    }
+
+                    for(int bonus : diceRolls){
+                        Role role = sortedRoles.poll();
+                        bonuses.put(role, bonuses.get(role) + bonus);
+                        sortedRoles.add(role);
+                    }
+
+                    for(Role role : bonuses.keySet()){
+                        for(Player player : main){
+                            if(player.getRole().equals(role)){
+                                output.appendText("\n\n" + player.getName() + " just got " + bonuses.get(role));
+                                player.setMoney(player.getMoney() + bonuses.get(role));
+                            }
+                        }
+                    }
+
+                }else{
+                    output.appendText("\n\nThere were no Players with main roles, so there are no bonuses");
+                }
+                current.getRoom().deactivateRoom();
+            }
+
+        }
+        rehearse.setDisable(true);
+        act.setDisable(true);
+        money.setText(String.valueOf(current.getMoney()));
+        credit.setText(String.valueOf(current.getCredit()));
     }
 
     @FXML
     private void rehearseButton(ActionEvent event) {
-        System.out.println("rehearse");
+        current.rehearsal();
+        rehearsal.setText(String.valueOf(current.getRehearsal()));
+        rehearse.setDisable(true);
+        act.setDisable(true);
     }
 
     @FXML
@@ -1028,8 +1141,15 @@ public class BoardController {
         SceneCard scene = current.getRoom().getScene();
 
         Role role = RoleView.display(roomRoles, scene, current.getRank());
-        current.takeRole(role);
-        takeRole.setDisable(true);
+        if(role != null){
+            current.takeRole(role);
+            role.takeRole();
+            current.getRoom().addActor(current);
+            takeRole.setDisable(true);
+            move.setDisable(true);
+            System.out.println(role.getName());
+        }
+
     }
 
     @FXML
