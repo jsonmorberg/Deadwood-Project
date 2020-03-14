@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="965.0" prefWidth="1461.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.BoardController">
+   <children>
+      <ImageView fitHeight="528.0" fitWidth="1482.0" layoutX="-15.0" layoutY="448.0">
+         <image>
+            <Image url="file:/C:/Users/jayso/Downloads/c2f14e87ab32ecc59254100b0a07340b.jpg" />
+         </image>
+         <effect>
+            <SepiaTone />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="465.0" fitWidth="1468.0" layoutX="-1.0" layoutY="-13.0" onMouseClicked="#actButton">
+         <image>
+            <Image url="file:/C:/Users/jayso/Downloads/c2f14e87ab32ecc59254100b0a07340b.jpg" />
+         </image>
+         <effect>
+            <SepiaTone />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="787.0" fitWidth="1104.0" layoutX="-6.0" layoutY="-2.0">
+         <image>
+            <Image url="file:/C:/Users/jayso/IdeaProjects/DeadwoodGUI/src/GUI/board.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="1097.0" layoutY="73.0" scaleX="1.1" strokeType="OUTSIDE" strokeWidth="0.0" text="DEADWOOD" textAlignment="CENTER" wrappingWidth="368.9999999999999">
+         <font>
+            <Font name="Rockwell Extra Bold" size="44.0" />
+         </font>
+         <effect>
+            <GaussianBlur radius="5.5" />
+         </effect>
+      </Text>
+      <AnchorPane layoutX="1168.0" layoutY="481.0" prefHeight="223.0" prefWidth="233.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+         <children>
+            <Text layoutX="23.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAYER:">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="21.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Text>
+            <Text layoutX="22.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RANK:">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="21.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Text>
+            <Text layoutX="23.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREDIT:" wrappingWidth="78.134765625">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="21.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Text>
+            <Text layoutX="23.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONEY:" wrappingWidth="87.0">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="21.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Text>
+            <TextArea fx:id="name" editable="false" layoutX="110.0" layoutY="22.0" prefHeight="0.0" prefWidth="105.0">
+               <effect>
+                  <Blend />
+               </effect>
+               <font>
+                  <Font name="Franklin Gothic Demi" size="15.0" />
+               </font>
+            </TextArea>
+            <TextArea fx:id="rank" editable="false" layoutX="110.0" layoutY="63.0" prefHeight="44.0" prefWidth="105.0" text="    ">
+               <effect>
+                  <Blend />
+               </effect>
+               <font>
+                  <Font name="Franklin Gothic Demi" size="15.0" />
+               </font>
+            </TextArea>
+            <TextArea fx:id="money" editable="false" layoutX="110.0" layoutY="103.0" prefHeight="44.0" prefWidth="105.0" text="    ">
+               <effect>
+                  <Blend />
+               </effect>
+               <font>
+                  <Font name="Franklin Gothic Demi" size="15.0" />
+               </font>
+            </TextArea>
+            <TextArea fx:id="credit" editable="false" layoutX="110.0" layoutY="142.0" maxHeight="-Infinity" prefHeight="9.0" prefWidth="105.0" text="     " AnchorPane.topAnchor="142.0">
+               <effect>
+                  <Blend />
+               </effect>
+               <font>
+                  <Font name="Franklin Gothic Demi" size="15.0" />
+               </font>
+            </TextArea>
+            <TextArea fx:id="rehearsal" editable="false" layoutX="148.0" layoutY="174.0" prefHeight="24.0" prefWidth="68.0" text="     ">
+               <effect>
+                  <Blend />
+               </effect>
+               <font>
+                  <Font name="Franklin Gothic Demi" size="15.0" />
+               </font>
+            </TextArea>
+            <Text layoutX="18.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REHEARSAL:" wrappingWidth="125.73095703125">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="21.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Text>
+         </children>
+         <effect>
+            <InnerShadow choke="0.51" />
+         </effect>
+      </AnchorPane>
+      <Button fx:id="move" layoutX="277.0" layoutY="829.0" mnemonicParsing="false" onAction="#moveButton" prefHeight="91.0" prefWidth="215.0" text="MOVE" visible="false">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="35.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.24" specularConstant="0.0" surfaceScale="4.4">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+            </Lighting>
+         </effect>
+      </Button>
+      <ImageView layoutX="764.0" layoutY="475.0">
+         <image>
+            <Image url="@../../../../Downloads/shot.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="endTurn1" layoutX="954.0" layoutY="829.0" mnemonicParsing="false" onAction="#endButton" prefHeight="91.0" prefWidth="215.0" text="END TURN" visible="false">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="35.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.24" specularConstant="0.0" surfaceScale="4.4">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="takeRole" layoutX="619.0" layoutY="830.0" mnemonicParsing="false" onAction="#takeRoleButton" prefHeight="91.0" prefWidth="215.0" text="TAKE ROLE">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="35.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.24" specularConstant="0.0" surfaceScale="4.4">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="upgrade" layoutX="619.0" layoutY="830.0" mnemonicParsing="false" onAction="#upgradeButton" prefHeight="91.0" prefWidth="215.0" text="UPGRADE">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="35.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.24" specularConstant="0.0" surfaceScale="4.4">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="rehearse" layoutX="434.0" layoutY="830.0" mnemonicParsing="false" onAction="#rehearseButton" prefHeight="91.0" prefWidth="215.0" text="REHEARSE" visible="false">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="35.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.24" specularConstant="0.0" surfaceScale="4.4">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="act" layoutX="62.0" layoutY="830.0" mnemonicParsing="false" onAction="#actButton" prefHeight="91.0" prefWidth="215.0" text="ACT" visible="false">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="35.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.24" specularConstant="0.0" surfaceScale="4.4">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="quit" layoutX="806.0" layoutY="830.0" mnemonicParsing="false" onAction="#quitButton" prefHeight="91.0" prefWidth="215.0" text="QUIT" visible="false">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="35.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.24" specularConstant="0.0" surfaceScale="4.4">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="endTurn2" layoutX="1169.0" layoutY="829.0" mnemonicParsing="false" onAction="#endButton" prefHeight="91.0" prefWidth="215.0" text="END TURN" visible="false">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="35.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.24" specularConstant="0.0" surfaceScale="4.4">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+            </Lighting>
+         </effect>
+      </Button>
+      <TextArea fx:id="output" editable="false" layoutX="1137.0" layoutY="107.0" prefHeight="275.0" prefWidth="294.0" text="WELCOME TO DEADWOOD">
+         <effect>
+            <InnerShadow choke="0.44" />
+         </effect>
+         <font>
+            <Font name="Franklin Gothic Medium" size="15.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="start" layoutX="619.0" layoutY="830.0" mnemonicParsing="false" onAction="#startGame" prefHeight="91.0" prefWidth="215.0" text="START">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="35.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.24" specularConstant="0.0" surfaceScale="4.4">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="trailer" disable="true" layoutX="890.0" layoutY="208.0" mnemonicParsing="false" onAction="#moveTrailer" opacity="0.61" prefHeight="186.0" prefWidth="194.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+      <Button fx:id="saloon" disable="true" layoutX="544.0" layoutY="180.0" mnemonicParsing="false" onAction="#moveSaloon" opacity="0.61" prefHeight="214.0" prefWidth="347.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+      <Button fx:id="main" disable="true" layoutX="545.0" mnemonicParsing="false" onAction="#moveMain" opacity="0.61" prefHeight="186.0" prefWidth="539.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+      <Button fx:id="hotel" disable="true" layoutX="904.0" layoutY="395.0" mnemonicParsing="false" onAction="#moveHotel" opacity="0.61" prefHeight="378.0" prefWidth="187.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+      <Button fx:id="bank" disable="true" layoutX="543.0" layoutY="395.0" mnemonicParsing="false" onAction="#moveBank" opacity="0.61" prefHeight="165.0" prefWidth="363.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+      <Button fx:id="church" disable="true" layoutX="543.0" layoutY="560.0" mnemonicParsing="false" onAction="#moveChurch" opacity="0.61" prefHeight="214.0" prefWidth="310.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+      <Button fx:id="general" disable="true" layoutX="178.0" layoutY="208.0" mnemonicParsing="false" onAction="#moveGeneral" opacity="0.61" prefHeight="186.0" prefWidth="372.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+      <Button fx:id="jail" disable="true" layoutX="236.0" layoutY="7.0" mnemonicParsing="false" onAction="#moveJail" opacity="0.61" prefHeight="202.0" prefWidth="310.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+      <Button fx:id="train" disable="true" layoutX="3.0" layoutY="7.0" mnemonicParsing="false" onAction="#moveTrain" opacity="0.61" prefHeight="388.0" prefWidth="180.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+      <Button fx:id="casting" disable="true" layoutX="3.0" layoutY="387.0" mnemonicParsing="false" onAction="#moveCasting" opacity="0.61" prefHeight="202.0" prefWidth="204.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+      <Button fx:id="ranch" disable="true" layoutX="207.0" layoutY="388.0" mnemonicParsing="false" onAction="#moveRanch" opacity="0.61" prefHeight="223.0" prefWidth="341.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+      <Button fx:id="secret" disable="true" layoutX="8.0" layoutY="600.0" mnemonicParsing="false" onAction="#moveSecret" opacity="0.61" prefHeight="186.0" prefWidth="539.0" style="-fx-background-color: invisible; -fx-border-color: blue; -fx-border-width: 5;" visible="false">
+         <effect>
+            <GaussianBlur radius="6.25" />
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>
