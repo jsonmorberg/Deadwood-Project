@@ -61,9 +61,9 @@ public class RoleView {
 
 
         if (main.size() == 3) {
-            main1 = new Button(main.get(0).getName());
-            main2 = new Button(main.get(1).getName());
-            main3 = new Button(main.get(2).getName());
+            main1 = new Button(main.get(0).getName() + " (" + main.get(0).getRank() + ")");
+            main2 = new Button(main.get(1).getName() + " (" + main.get(1).getRank() + ")");
+            main3 = new Button(main.get(2).getName() + " (" + main.get(2).getRank() + ")");
 
             main1.setOnAction(e -> {
                 role = main.get(0);
@@ -80,27 +80,27 @@ public class RoleView {
                 window.close();
             });
 
-            if(rank < main.get(0).getRank()){
+            if (rank < main.get(0).getRank()) {
                 main1.setDisable(true);
             }
 
-            if(rank < main.get(1).getRank()){
+            if (rank < main.get(1).getRank()) {
                 main2.setDisable(true);
             }
 
-            if(rank < main.get(2).getRank()){
+            if (rank < main.get(2).getRank()) {
                 main3.setDisable(true);
             }
 
-            if(main.get(0).isTaken()){
+            if (main.get(0).isTaken()) {
                 main1.setDisable(true);
             }
 
-            if(main.get(1).isTaken()){
+            if (main.get(1).isTaken()) {
                 main2.setDisable(true);
             }
 
-            if(main.get(2).isTaken()){
+            if (main.get(2).isTaken()) {
                 main3.setDisable(true);
             }
 
@@ -108,8 +108,8 @@ public class RoleView {
 
 
         } else if (main.size() == 2) {
-            main1 = new Button(main.get(0).getName());
-            main2 = new Button(main.get(1).getName());
+            main1 = new Button(main.get(0).getName() + " (" + main.get(0).getRank() + ")");
+            main2 = new Button(main.get(1).getName() + " (" + main.get(1).getRank() + ")");
 
             main1.setOnAction(e -> {
                 role = main.get(0);
@@ -121,145 +121,163 @@ public class RoleView {
                 window.close();
             });
 
-            if(rank < main.get(0).getRank()){
+            if (rank < main.get(0).getRank()) {
                 main1.setDisable(true);
             }
 
-            if(rank < main.get(1).getRank()){
+            if (rank < main.get(1).getRank()) {
                 main2.setDisable(true);
             }
 
-            if(main.get(0).isTaken()){
+            if (main.get(0).isTaken()) {
                 main1.setDisable(true);
             }
 
-            if(main.get(1).isTaken()){
+            if (main.get(1).isTaken()) {
                 main2.setDisable(true);
             }
 
             layout1.getChildren().addAll(main1, main2);
+
+        } else if (main.size() == 1) {
+            main1 = new Button(main.get(0).getName() + " (" + main.get(0).getRank() + ")");
+
+            main1.setOnAction(e -> {
+                role = main.get(0);
+                window.close();
+            });
+
+
+            if (rank < main.get(0).getRank()) {
+                main1.setDisable(true);
+            }
+
+            if (main.get(0).isTaken()) {
+                main1.setDisable(true);
+            }
+
+            layout1.getChildren().addAll(main1);
         }
+            if (offCard.size() == 4) {
 
-        if (offCard.size() == 4) {
+                extra1 = new Button(offCard.get(0).getName() + " (" + offCard.get(0).getRank() + ")");
+                extra2 = new Button(offCard.get(1).getName() + " (" + offCard.get(1).getRank() + ")");
+                extra3 = new Button(offCard.get(2).getName() + " (" + offCard.get(2).getRank() + ")");
+                extra4 = new Button(offCard.get(3).getName() + " (" + offCard.get(3).getRank() + ")");
 
-            extra1 = new Button(offCard.get(0).getName());
-            extra2 = new Button(offCard.get(1).getName());
-            extra3 = new Button(offCard.get(2).getName());
-            extra4 = new Button(offCard.get(3).getName());
+                extra1.setOnAction(e -> {
+                    role = offCard.get(0);
+                    window.close();
+                });
 
-            extra1.setOnAction(e -> {
-                role = offCard.get(0);
-                window.close();
-            });
+                extra2.setOnAction(e -> {
+                    role = offCard.get(1);
+                    window.close();
+                });
 
-            extra2.setOnAction(e -> {
-                role = offCard.get(1);
-                window.close();
-            });
+                extra3.setOnAction(e -> {
+                    role = offCard.get(2);
+                    window.close();
+                });
 
-            extra3.setOnAction(e -> {
-                role = offCard.get(2);
-                window.close();
-            });
+                extra4.setOnAction(e -> {
+                    role = offCard.get(3);
+                    window.close();
+                });
 
-            extra4.setOnAction(e -> {
-                role = offCard.get(3);
-                window.close();
-            });
+                if (rank < offCard.get(0).getRank()) {
+                    extra1.setDisable(true);
+                }
+                if (rank < offCard.get(1).getRank()) {
+                    extra2.setDisable(true);
+                }
+                if (rank < offCard.get(2).getRank()) {
+                    extra3.setDisable(true);
+                }
+                if (rank < offCard.get(3).getRank()) {
+                    extra4.setDisable(true);
+                }
+                if (offCard.get(0).isTaken()) {
+                    extra1.setDisable(true);
+                }
+                if (offCard.get(1).isTaken()) {
+                    extra2.setDisable(true);
+                }
+                if (offCard.get(2).isTaken()) {
+                    extra3.setDisable(true);
+                }
+                if (offCard.get(3).isTaken()) {
+                    extra4.setDisable(true);
+                }
+                layout2.getChildren().addAll(extra1, extra2, extra3, extra4);
 
-            if(rank < offCard.get(0).getRank()){
-                extra1.setDisable(true);
-            }
-            if(rank < offCard.get(1).getRank()){
-                extra2.setDisable(true);
-            }
-            if(rank < offCard.get(2).getRank()){
-                extra3.setDisable(true);
-            }
-            if(rank < offCard.get(3).getRank()){
-                extra4.setDisable(true);
-            }
-            if(offCard.get(0).isTaken()){
-                extra1.setDisable(true);
-            }
-            if(offCard.get(1).isTaken()){
-                extra2.setDisable(true);
-            }
-            if(offCard.get(2).isTaken()){
-                extra3.setDisable(true);
-            }
-            if(offCard.get(3).isTaken()){
-                extra4.setDisable(true);
-            }
-            layout2.getChildren().addAll(extra1, extra2, extra3, extra4);
+            } else if (offCard.size() == 3) {
+                extra1 = new Button(offCard.get(0).getName() + " (" + offCard.get(0).getRank() + ")");
+                extra2 = new Button(offCard.get(1).getName() + " (" + offCard.get(1).getRank() + ")");
+                extra3 = new Button(offCard.get(2).getName() + " (" + offCard.get(2).getRank() + ")");
 
-        } else if (offCard.size() == 3) {
-            extra1 = new Button(offCard.get(0).getName());
-            extra2 = new Button(offCard.get(1).getName());
-            extra3 = new Button(offCard.get(2).getName());
+                extra1.setOnAction(e -> {
+                    role = offCard.get(0);
+                    window.close();
+                });
 
-            extra1.setOnAction(e -> {
-                role = offCard.get(0);
-                window.close();
-            });
+                extra2.setOnAction(e -> {
+                    role = offCard.get(1);
+                    window.close();
+                });
 
-            extra2.setOnAction(e -> {
-                role = offCard.get(1);
-                window.close();
-            });
+                extra3.setOnAction(e -> {
+                    role = offCard.get(2);
+                    window.close();
+                });
 
-            extra3.setOnAction(e -> {
-                role = offCard.get(2);
-                window.close();
-            });
+                if (rank < offCard.get(0).getRank()) {
+                    extra1.setDisable(true);
+                }
+                if (rank < offCard.get(1).getRank()) {
+                    extra2.setDisable(true);
+                }
+                if (rank < offCard.get(2).getRank()) {
+                    extra3.setDisable(true);
+                }
+                if (offCard.get(0).isTaken()) {
+                    extra1.setDisable(true);
+                }
+                if (offCard.get(1).isTaken()) {
+                    extra2.setDisable(true);
+                }
+                if (offCard.get(2).isTaken()) {
+                    extra3.setDisable(true);
+                }
+                layout2.getChildren().addAll(extra1, extra2, extra3);
 
-            if(rank < offCard.get(0).getRank()){
-                extra1.setDisable(true);
-            }
-            if(rank < offCard.get(1).getRank()){
-                extra2.setDisable(true);
-            }
-            if(rank < offCard.get(2).getRank()){
-                extra3.setDisable(true);
-            }
-            if(offCard.get(0).isTaken()){
-                extra1.setDisable(true);
-            }
-            if(offCard.get(1).isTaken()){
-                extra2.setDisable(true);
-            }
-            if(offCard.get(2).isTaken()){
-                extra3.setDisable(true);
-            }
-            layout2.getChildren().addAll(extra1, extra2, extra3);
+            } else if (offCard.size() == 2) {
+                extra1 = new Button(offCard.get(0).getName() + " (" + offCard.get(0).getRank() + ")");
+                extra2 = new Button(offCard.get(1).getName() + " (" + offCard.get(1).getRank() + ")");
 
-        } else if (offCard.size() == 2) {
-            extra1 = new Button(offCard.get(0).getName());
-            extra2 = new Button(offCard.get(1).getName());
+                extra1.setOnAction(e -> {
+                    role = offCard.get(0);
+                    window.close();
+                });
+                extra2.setOnAction(e -> {
+                    role = offCard.get(1);
+                    window.close();
+                });
 
-            extra1.setOnAction(e -> {
-                role = offCard.get(0);
-                window.close();
-            });
-            extra2.setOnAction(e -> {
-                role = offCard.get(1);
-                window.close();
-            });
-
-            if(rank < offCard.get(0).getRank()){
-                extra1.setDisable(true);
+                if (rank < offCard.get(0).getRank()) {
+                    extra1.setDisable(true);
+                }
+                if (rank < offCard.get(1).getRank()) {
+                    extra2.setDisable(true);
+                }
+                if (offCard.get(0).isTaken()) {
+                    extra1.setDisable(true);
+                }
+                if (offCard.get(1).isTaken()) {
+                    extra2.setDisable(true);
+                }
+                layout2.getChildren().addAll(extra1, extra2);
             }
-            if(rank < offCard.get(1).getRank()){
-                extra2.setDisable(true);
-            }
-            if(offCard.get(0).isTaken()){
-                extra1.setDisable(true);
-            }
-            if(offCard.get(1).isTaken()){
-                extra2.setDisable(true);
-            }
-            layout2.getChildren().addAll(extra1, extra2);
-        }
 
             pane.getChildren().addAll(layout2, layout1);
 
@@ -267,7 +285,7 @@ public class RoleView {
             window.setScene(sceneWindow);
             window.showAndWait(); //needs to be closed before returning
             return role;
+
         }
     }
-
 

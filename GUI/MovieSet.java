@@ -103,4 +103,8 @@ public class MovieSet {
     public ArrayList<Player> getActors(){
         return this.actors;
     }
+
+    public void removeActor(Player player){
+        actors.remove(player);
+    }
 }

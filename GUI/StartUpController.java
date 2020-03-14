@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/* View to set up game*/
+
 public class StartUpController implements Initializable {
     ObservableList list = FXCollections.observableArrayList();
 

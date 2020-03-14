@@ -1,24 +1,14 @@
 package GUI;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.event.ActionEvent;
-import javafx.scene.control.TextField;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
-import java.awt.*;
-import java.net.URL;
-
+/* Class to act as a Controller to the BoardView */
 
 public class BoardController {
 
@@ -85,9 +75,11 @@ public class BoardController {
     @FXML
     private void startGame(ActionEvent event){
         buttonViewOne();
+        takeRole.setDisable(true);
         start.setVisible(false);
         start.setDisable(true);
 
+        players = Deadwood.getPlayers();
         board = Deadwood.getBoard();
         current = Deadwood.getPlayer();
         name.setText(current.getName());
@@ -96,7 +88,8 @@ public class BoardController {
         credit.setText(String.valueOf(current.getCredit()));
         rehearsal.setText(String.valueOf(current.getRehearsal()));
 
-        output.appendText("\nIt is " + current.getName() + "'s turn!");
+        output.appendText("\n\n"+board.getDays()+" DAYS LEFT");
+        output.appendText("\n\nIt is " + current.getName() + "'s turn!");
     }
 
 
@@ -292,12 +285,19 @@ public class BoardController {
     private void moveTrain(ActionEvent event){
         BoardView.moveTrain(current);
         current.move(board.getSets().get(0));
+        buttonViewOne();
+        move.setDisable(true);
 
         if(current.getRoom().isVisited() == false){
             BoardView.flipTrain();
         }
 
         takeRole.setDisable(false);
+
+        if(!(current.getRoom().isActive())){
+            takeRole.setDisable(true);
+        }
+
         endTurn1.setDisable(false);
         secret.setVisible(false);
         secret.setDisable(true);
@@ -359,6 +359,11 @@ public class BoardController {
         }
 
         takeRole.setDisable(false);
+
+        if(!(current.getRoom().isActive())){
+            takeRole.setDisable(true);
+        }
+
         endTurn1.setDisable(false);
         secret.setVisible(false);
         secret.setDisable(true);
@@ -418,6 +423,11 @@ public class BoardController {
         }
 
         takeRole.setDisable(false);
+
+        if(!(current.getRoom().isActive())){
+            takeRole.setDisable(true);
+        }
+
         endTurn1.setDisable(false);
         secret.setVisible(false);
         secret.setDisable(true);
@@ -471,12 +481,19 @@ public class BoardController {
     private void moveSecret(ActionEvent event){
         BoardView.moveSecret(current);
         current.move(board.getSets().get(1));
+        buttonViewOne();
+        move.setDisable(true);
 
         if(current.getRoom().isVisited() == false){
             BoardView.flipSecret();
         }
 
         takeRole.setDisable(false);
+
+        if(!(current.getRoom().isActive())){
+            takeRole.setDisable(true);
+        }
+
         endTurn1.setDisable(false);
         secret.setVisible(false);
         secret.setDisable(true);
@@ -536,6 +553,11 @@ public class BoardController {
         }
 
         takeRole.setDisable(false);
+
+        if(!(current.getRoom().isActive())){
+            takeRole.setDisable(true);
+        }
+
         endTurn1.setDisable(false);
         secret.setVisible(false);
         secret.setDisable(true);
@@ -595,6 +617,11 @@ public class BoardController {
         }
 
         takeRole.setDisable(false);
+
+        if(!(current.getRoom().isActive())){
+            takeRole.setDisable(true);
+        }
+
         endTurn1.setDisable(false);
         secret.setVisible(false);
         secret.setDisable(true);
@@ -654,6 +681,11 @@ public class BoardController {
         }
 
         takeRole.setDisable(false);
+
+        if(!(current.getRoom().isActive())){
+            takeRole.setDisable(true);
+        }
+
         endTurn1.setDisable(false);
         secret.setVisible(false);
         secret.setDisable(true);
@@ -707,12 +739,19 @@ public class BoardController {
     private void moveRanch(ActionEvent event){
         BoardView.moveRanch(current);
         current.move(board.getSets().get(7));
+        buttonViewOne();
+        move.setDisable(true);
 
         if(current.getRoom().isVisited() == false){
             BoardView.flipRanch();
         }
 
         takeRole.setDisable(false);
+
+        if(!(current.getRoom().isActive())){
+            takeRole.setDisable(true);
+        }
+
         endTurn1.setDisable(false);
         secret.setVisible(false);
         secret.setDisable(true);
@@ -767,11 +806,17 @@ public class BoardController {
         BoardView.moveMain(current);
         current.move(board.getSets().get(4));
 
+
         if(current.getRoom().isVisited() == false){
             BoardView.flipMain();
         }
 
         takeRole.setDisable(false);
+
+        if(!(current.getRoom().isActive())){
+            takeRole.setDisable(true);
+        }
+
         endTurn1.setDisable(false);
         secret.setVisible(false);
         secret.setDisable(true);
@@ -827,8 +872,9 @@ public class BoardController {
     private void moveTrailer(ActionEvent event){
         BoardView.moveTrailer(current);
         current.move(board.getSets().get(10));
+        move.setDisable(true);
 
-        takeRole.setDisable(false);
+        takeRole.setDisable(true);
         endTurn1.setDisable(false);
         secret.setVisible(false);
         secret.setDisable(true);
@@ -884,9 +930,9 @@ public class BoardController {
         BoardView.moveCasting(current);
         current.move(board.getSets().get(11));
 
-        upgrade.setDisable(false);
-        endTurn1.setDisable(false);
         buttonViewThree();
+        move.setDisable(true);
+
         secret.setVisible(false);
         secret.setDisable(true);
         secret.toBack();
@@ -940,12 +986,18 @@ public class BoardController {
     private void moveBank(ActionEvent event){
         BoardView.moveBank(current);
         current.move(board.getSets().get(8));
+        move.setDisable(true);
 
         if(current.getRoom().isVisited() == false){
             BoardView.flipBank();
         }
 
         takeRole.setDisable(false);
+
+        if(!(current.getRoom().isActive())){
+            takeRole.setDisable(true);
+        }
+
         endTurn1.setDisable(false);
         secret.setVisible(false);
         secret.setDisable(true);
@@ -1012,7 +1064,7 @@ public class BoardController {
         output.appendText("\n\nCurrent Room: " + current.getRoom().getName() + "\nShots left: " + current.getRoom().getShotCount());
         Random random = new Random();
         int roll = random.nextInt(6) + 1;
-        output.appendText("\n\nYou rolled a \" + roll");
+        output.appendText("\n\nYou rolled a " + roll);
 
         //Does not meet budget
         if(roll + current.getRehearsal() < current.getRoom().getScene().getBudget()){
@@ -1026,19 +1078,41 @@ public class BoardController {
             //Meets budget
         }else{
             output.appendText("\n\nScenes budget was " + current.getRoom().getScene().getBudget() + ", your score was " + (roll + current.getRehearsal()) + " (rehearsal tokens + rolls)\n");
-            output.appendText("You met budget, so a shot has been taken! " + (current.getRoom().getShotCount()-1) + " shots left");
+            output.appendText("\n\nYou met budget, so a shot has been taken! " + (current.getRoom().getShotCount()-1) + " shots left");
 
             if(current.getRole().isExtra()){
                 current.setCredit(current.getCredit() + 1);
                 current.setMoney(current.getMoney() + 1);
-                output.appendText("\nSince you had an Extra role, you receive one dollar and one credit, you now have " + current.getMoney()+ " dollars and " + current.getCredit() + " credits");
+                output.appendText("\n\nSince you had an Extra role, you receive one dollar and one credit, you now have " + current.getMoney()+ " dollars and " + current.getCredit() + " credits");
 
             }else{
                 current.setCredit(current.getCredit() + 2);
-                output.appendText("\nSince you had a Main role, you receive two credits, you now have " + current.getCredit()+ " credits");
+                output.appendText("\n\nSince you had a Main role, you receive two credits, you now have " + current.getCredit()+ " credits");
             }
 
             current.getRoom().takeShot();
+
+            if(current.getRoom().getName().equals("Train Station")){
+                BoardView.takeTrainShot(current.getRoom().getShots());
+            }else if(current.getRoom().getName().equals("Secret Hideout")){
+                BoardView.takeSecretShot(current.getRoom().getShots());
+            }else if(current.getRoom().getName().equals("Church")){
+                BoardView.takeChurchShot(current.getRoom().getShots());
+            }else if(current.getRoom().getName().equals("Hotel")){
+                BoardView.takeHotelShot(current.getRoom().getShots());
+            }else if(current.getRoom().getName().equals("Main Street")){
+                BoardView.takeMainShot(current.getRoom().getShots());
+            }else if(current.getRoom().getName().equals("Jail")){
+                BoardView.takeJailShot(current.getRoom().getShots());
+            }else if(current.getRoom().getName().equals("General Store")){
+                BoardView.takeGeneralShot(current.getRoom().getShots());
+            }else if(current.getRoom().getName().equals("Ranch")){
+                BoardView.takeRanchShot(current.getRoom().getShots());
+            }else if(current.getRoom().getName().equals("Bank")){
+                BoardView.takeBankShot(current.getRoom().getShots());
+            }else if(current.getRoom().getName().equals("Saloon")){
+                BoardView.takeSaloonShot(current.getRoom().getShots());
+            }
 
             if(current.getRoom().getShots() == 0){
                 boolean flag = false;
@@ -1047,7 +1121,7 @@ public class BoardController {
                 ArrayList<Player> main = new ArrayList<Player>();
                 ArrayList<Role> roles = current.getRoom().getScene().getRoles();
 
-                output.appendText("\nAll shots are done in " + current.getRoom().getScene().getSceneName());
+                output.appendText("\n\nAll shots are done in " + current.getRoom().getScene().getSceneName());
 
                 //Filter through all main roles in Set for a main character
                 for (int i = 0; i < roles.size(); i++) {
@@ -1108,7 +1182,7 @@ public class BoardController {
                     for(Role role : bonuses.keySet()){
                         for(Player player : main){
                             if(player.getRole().equals(role)){
-                                output.appendText("\n\n" + player.getName() + " just got " + bonuses.get(role));
+                                output.appendText("\n\n" + player.getName() + " just got " + bonuses.get(role) + " dollars");
                                 player.setMoney(player.getMoney() + bonuses.get(role));
                             }
                         }
@@ -1117,12 +1191,13 @@ public class BoardController {
                 }else{
                     output.appendText("\n\nThere were no Players with main roles, so there are no bonuses");
                 }
+                BoardView.shutdown(current.getRoom(), current);
                 current.getRoom().deactivateRoom();
             }
-
         }
         rehearse.setDisable(true);
         act.setDisable(true);
+        quit.setDisable(true);
         money.setText(String.valueOf(current.getMoney()));
         credit.setText(String.valueOf(current.getCredit()));
     }
@@ -1133,6 +1208,7 @@ public class BoardController {
         rehearsal.setText(String.valueOf(current.getRehearsal()));
         rehearse.setDisable(true);
         act.setDisable(true);
+        quit.setDisable(true);
     }
 
     @FXML
@@ -1147,7 +1223,7 @@ public class BoardController {
             current.getRoom().addActor(current);
             takeRole.setDisable(true);
             move.setDisable(true);
-            System.out.println(role.getName());
+            output.appendText("\n\n" + current.getName() + " is now working" + current.getRole().getName());
         }
 
     }
@@ -1156,8 +1232,8 @@ public class BoardController {
     private void endButton(ActionEvent event) {
         current = Deadwood.getPlayer();
 
-        if(current.getRoom().getName().equals("Casting Office")){
-            buttonViewThree();
+        if(!current.getRoom().isActive()){
+            takeRole.setDisable(true);
         }
 
         name.setText(current.getName());
@@ -1166,20 +1242,70 @@ public class BoardController {
         credit.setText(String.valueOf(current.getCredit()));
         rehearsal.setText(String.valueOf(current.getRehearsal()));
 
-        output.appendText("\nIt is " + current.getName() + "'s turn!");
+        output.appendText("\n\nIt is " + current.getName() + "'s turn!");
 
         if(current.getRoom().getName().equals("Casting Office")){
             buttonViewThree();
+
         }else if(current.isOnRole()){
             buttonViewTwo();
+            if(current.getCredit() < (current.getRole().getRank()/2)){
+                quit.setDisable(true);
+            }
         }else{
             buttonViewOne();
+
+            if(current.getRoom().getName().equals("Trailer")){
+                takeRole.setDisable(true);
+            }
+
+            if(!current.getRoom().isActive()){
+                takeRole.setDisable(true);
+            }
+
         }
+
+        if(board.getActiveScenes() == 1){
+            output.appendText("\n\n\nDAY IS OVER!");
+            board.updateDays();
+            if(board.getDays() == 0){
+                output.appendText("\n\n\nGAME OVER!");
+                EndView.display(players);
+                BoardView.close();
+            }else {
+                board.resetBoard();
+                output.appendText("\n\n"+ board.getDays()+" DAYS LEFT");
+                try {
+                    BoardView.resetView();
+                    Queue<Player> store = new LinkedList<Player>();
+                    for (Player i : players) {
+                        i.setRoom(board.getTrailer());
+                        store.add(i);
+                    }
+                    players = store;
+                    buttonViewOne();
+                    takeRole.setDisable(true);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 
     @FXML
     private void quitButton(ActionEvent event) {
-        System.out.println("quit");
+        int loss = (int) Math.ceil(current.getRole().getRank()/2);
+        current.setCredit(current.getCredit() - loss);
+        output.appendText("\n"+current.getName()+" has just left the role of " + current.getRole().getName());
+        if (loss != 0) {
+            output.appendText("\nThis cost them " + loss + " credits, they now have " + current.getCredit());
+        }
+        current.getRoom().removeActor(current);
+        current.getRole().leaveRole();
+        current.discardRole();
+        buttonViewOne();
+        credit.setText(String.valueOf(current.getCredit()));
     }
 
     public void buttonViewOne(){

@@ -1,30 +1,26 @@
 package GUI;
 
-import javafx.application.Platform;
-import javafx.collections.ObservableMap;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Queue;
+
+/* View that manipulates and controls the Image Objects in the board game */
 
 public class BoardView {
 
     private static ArrayList<Player> actors;
     private static AnchorPane root;
     private static Board board;
-
-    private static HashMap<Player, ImageView> playerLocation;
-    private static HashMap<String, Image> cards;
-    private static ArrayList<ImageView> activeCards;
-    private static ArrayList<ImageView> shots;
+    private static Stage window;
 
     private static ImageView trainCard;
     private static ImageView secretCard;
@@ -83,10 +79,10 @@ public class BoardView {
 
 
 
-
+    //set up board
     public static void initialize(Queue<Player> players, Board b) throws FileNotFoundException {
 
-        ArrayList<Player> list = new ArrayList(players);;
+        ArrayList<Player> list = new ArrayList(players);
         actors = list;
         board = b;
 
@@ -291,12 +287,12 @@ public class BoardView {
         }
 
         Stage stage = new Stage();
+        window = stage;
         stage.setTitle("DEADWOOD");
         Scene deadwood = new Scene(root);
-        //Thread thread = new Thread(()-> BoardController.startGame(actors, board));
-        //thread.start();
 
         stage.setScene(deadwood);
+        stage.initStyle(StageStyle.UTILITY);
         stage.show();
         initializeCards();
     }
@@ -305,6 +301,12 @@ public class BoardView {
         BoardView.root = root;
     }
 
+    //game is over
+    public static void close(){
+        window.close();
+    }
+
+    //set up first set of scene cards
     public static void initializeCards() throws FileNotFoundException {
         ArrayList<MovieSet> sets = board.getSets();
 
@@ -375,6 +377,7 @@ public class BoardView {
         shots();
     }
 
+    //set coordinates for card covers
     public static void coverCards(){
 
         trainCardCover.setX(12);
@@ -409,6 +412,7 @@ public class BoardView {
 
     }
 
+    //set coordinates for shots
     public static void shots(){
         trainShot1.setX(139);
         trainShot1.setY(30);
@@ -455,6 +459,382 @@ public class BoardView {
         saloonShot2.setX(569);
         saloonShot2.setY(188);
     }
+
+    //reset board for new day
+    public static void resetView() throws FileNotFoundException {
+        if(actors.size() == 2){
+
+            player1.setX(911);
+            player1.setY(275);
+
+            player2.setX(951);
+            player2.setY(275);
+
+        }else if(actors.size() == 3){
+
+            player1.setX(911);
+            player1.setY(275);
+
+            player2.setX(951);
+            player2.setY(275);
+
+            player3.setX(991);
+            player3.setY(275);
+
+        }else if(actors.size() == 4){
+
+            player1.setX(911);
+            player1.setY(275);
+
+            player2.setX(951);
+            player2.setY(275);
+
+            player3.setX(991);
+            player3.setY(275);
+
+            player4.setX(1031);
+            player4.setY(275);
+
+        }else if(actors.size() == 5){
+
+            player1.setX(911);
+            player1.setY(275);
+
+            player2.setX(951);
+            player2.setY(275);
+
+            player3.setX(991);
+            player3.setY(275);
+
+            player4.setX(1031);
+            player4.setY(275);
+
+            player5.setX(911);
+            player5.setY(324);
+
+        }else if(actors.size() == 6){
+
+            player1.setX(911);
+            player1.setY(275);
+
+            player2.setX(951);
+            player2.setY(275);
+
+            player3.setX(991);
+            player3.setY(275);
+
+            player4.setX(1031);
+            player4.setY(275);
+
+            player5.setX(911);
+            player5.setY(324);
+
+            player6.setX(951);
+            player6.setY(324);
+
+        }else if(actors.size() == 7){
+
+            player1.setX(911);
+            player1.setY(275);
+
+            player2.setX(951);
+            player2.setY(275);
+
+            player3.setX(991);
+            player3.setY(275);
+
+            player4.setX(1031);
+            player4.setY(275);
+
+            player5.setX(911);
+            player5.setY(324);
+
+            player6.setX(951);
+            player6.setY(324);
+
+            player7.setX(991);
+            player7.setY(324);
+
+        }else if(actors.size() == 8) {
+
+            player1.setX(911);
+            player1.setY(275);
+
+            player2.setX(951);
+            player2.setY(275);
+
+            player3.setX(991);
+            player3.setY(275);
+
+            player4.setX(1031);
+            player4.setY(275);
+
+            player5.setX(911);
+            player5.setY(324);
+
+            player6.setX(951);
+            player6.setY(324);
+
+            player7.setX(991);
+            player7.setY(324);
+
+            player8.setX(1031);
+            player8.setY(324);
+
+            }
+
+            ArrayList<MovieSet> sets = board.getSets();
+
+            SceneCard scene1 = sets.get(0).getScene();
+            trainCard = new ImageView(new Image(new FileInputStream(new File("./src/GUI/"+scene1.getJpg()))));
+
+            SceneCard scene2 = sets.get(1).getScene();
+            secretCard = new ImageView(new Image(new FileInputStream(new File("./src/GUI/"+scene2.getJpg()))));
+
+            SceneCard scene3 = sets.get(2).getScene();
+            churchCard = new ImageView(new Image(new FileInputStream(new File("./src/GUI/"+scene3.getJpg()))));
+
+            SceneCard scene4 = sets.get(3).getScene();
+            hotelCard = new ImageView(new Image(new FileInputStream(new File("./src/GUI/"+scene4.getJpg()))));
+
+            SceneCard scene5 = sets.get(4).getScene();
+            mainStCard = new ImageView(new Image(new FileInputStream(new File("./src/GUI/"+scene5.getJpg()))));
+
+            SceneCard scene6 = sets.get(5).getScene();
+            jailCard = new ImageView(new Image(new FileInputStream(new File("./src/GUI/"+scene6.getJpg()))));
+
+            SceneCard scene7 = sets.get(6).getScene();
+            generalCard = new ImageView(new Image(new FileInputStream(new File("./src/GUI/"+scene7.getJpg()))));
+
+            SceneCard scene8 = sets.get(7).getScene();
+            ranchCard = new ImageView(new Image(new FileInputStream(new File("./src/GUI/"+scene8.getJpg()))));
+
+            SceneCard scene9 = sets.get(8).getScene();
+            bankCard = new ImageView(new Image(new FileInputStream(new File("./src/GUI/"+scene9.getJpg()))));
+
+            SceneCard scene10 = sets.get(9).getScene();
+            saloonCard = new ImageView(new Image(new FileInputStream(new File("./src/GUI/"+scene10.getJpg()))));
+            root.getChildren().addAll(trainCard, secretCard, churchCard, hotelCard, mainStCard, jailCard, generalCard, ranchCard, bankCard, saloonCard);
+
+            trainCard.setX(12);
+            trainCard.setY(77);
+            secretCard.setX(14);
+            secretCard.setY(628);
+
+            churchCard.setX(561);
+            churchCard.setY(628);
+
+            hotelCard.setX(876);
+            hotelCard.setY(628);
+
+            mainStCard.setX(876);
+            mainStCard.setY(21);
+
+            jailCard.setX(252);
+            jailCard.setY(25);
+
+            generalCard.setX(332);
+            generalCard.setY(240);
+
+            ranchCard.setX(220);
+            ranchCard.setY(411);
+
+            bankCard.setX(563);
+            bankCard.setY(405);
+
+            saloonCard.setX(570);
+            saloonCard.setY(240);
+
+            trainCardCover.setVisible(true);
+            trainCardCover.toFront();
+            secretCardCover.setVisible(true);
+            churchCardCover.setVisible(true);
+            hotelCardCover.setVisible(true);
+            mainStCardCover.setVisible(true);
+            jailCardCover.setVisible(true);
+            generalCardCover.setVisible(true);
+            ranchCardCover.setVisible(true);
+            bankCardCover.setVisible(true);
+            saloonCardCover.setVisible(true);
+
+            secretCardCover.toFront();
+            churchCardCover.toFront();
+            hotelCardCover.toFront();
+            mainStCardCover.toFront();
+            jailCardCover.toFront();
+            generalCardCover.toFront();
+            ranchCardCover.toFront();
+            bankCardCover.toFront();
+            saloonCardCover.toFront();
+
+            trainShot1.setVisible(true);
+            trainShot1.toFront();
+            trainShot2.setVisible(true);
+            trainShot2.toFront();
+            trainShot3.setVisible(true);
+            trainShot3.toFront();
+            secretShot1.setVisible(true);
+            secretShot1.toFront();
+            secretShot2.setVisible(true);
+            secretShot2.toFront();
+            secretShot3.setVisible(true);
+            secretShot3.toFront();
+            churchShot1.setVisible(true);
+            churchShot1.toFront();
+            churchShot2.setVisible(true);
+            churchShot2.toFront();
+            hotelShot1.setVisible(true);
+            hotelShot1.toFront();
+            hotelShot2.setVisible(true);
+            hotelShot2.toFront();
+            hotelShot3.setVisible(true);
+            hotelShot3.toFront();
+            mainStShot1.setVisible(true);
+            mainStShot1.toFront();
+            mainStShot2.setVisible(true);
+            mainStShot2.toFront();
+            mainStShot3.setVisible(true);
+            mainStShot3.toFront();
+            jailShot1.setVisible(true);
+            jailShot1.toFront();
+            generalShot1.setVisible(true);
+            generalShot1.toFront();
+            generalShot2.setVisible(true);
+            generalShot2.toFront();
+            ranchShot1.setVisible(true);;
+            ranchShot1.toFront();
+            ranchShot2.setVisible(true);;
+            ranchShot2.toFront();
+            bankShot1.setVisible(true);
+            bankShot1.toFront();
+            saloonShot1.setVisible(true);
+            saloonShot1.toFront();
+            saloonShot2.setVisible(true);
+            saloonShot2.toFront();
+        }
+
+    //shut down room view
+    public static void shutdown(MovieSet room, Player player) {
+                    if(room.getName().equals("Train Station")){
+                        moveTrain(player);
+                        trainCard.setVisible(false);
+                    }else if(room.getName().equals("Secret Hideout")){
+                        moveSecret(player);
+                        secretCard.setVisible(false);
+                    }else if(room.getName().equals("Church")){
+                        moveChurch(player);
+                        churchCard.setVisible(false);
+                    }else if(room.getName().equals("Hotel")){
+                        moveHotel(player);
+                        hotelCard.setVisible(false);
+                    }else if(room.getName().equals("Main Street")){
+                        moveMain(player);
+                        mainStCard.setVisible(false);
+                    }else if(room.getName().equals("Jail")){
+                        moveJail(player);
+                        jailCard.setVisible(false);
+                    }else if(room.getName().equals("General Store")){
+                        moveGeneral(player);
+                        generalCard.setVisible(false);
+                    }else if(room.getName().equals("Ranch")){
+                        moveRanch(player);
+                        ranchCard.setVisible(false);
+                    }else if(room.getName().equals("Bank")){
+                        moveBank(player);
+                        bankCard.setVisible(false);
+                    }else if(room.getName().equals("Saloon")){
+                        moveSaloon(player);
+                        saloonCard.setVisible(false);
+                    }
+    }
+
+    /* Various classes for individual assignments */
+
+    public static void takeTrainShot(int shots){
+        if(shots == 2){
+            trainShot1.setVisible(false);
+        }else if(shots == 1){
+            trainShot2.setVisible(false);
+        }else if(shots == 0){
+            trainShot3.setVisible(false);
+        }
+    }
+
+    public static void takeSaloonShot(int shots){
+        if(shots == 1){
+            saloonShot1.setVisible(false);
+        }else if(shots == 0){
+            saloonShot2.setVisible(false);
+        }
+    }
+
+    public static void takeHotelShot(int shots){
+        if(shots == 2){
+            hotelShot1.setVisible(false);
+        }else if(shots == 1){
+            hotelShot2.setVisible(false);
+        }else if(shots == 0){
+            hotelShot3.setVisible(false);
+        }
+    }
+
+    public static void takeMainShot(int shots){
+        if(shots == 2){
+            mainStShot1.setVisible(false);
+        }else if(shots == 1){
+            mainStShot2.setVisible(false);
+        }else if(shots == 0){
+            mainStShot3.setVisible(false);
+        }
+    }
+
+    public static void takeJailShot(int shots){
+        if(shots == 0){
+            jailShot1.setVisible(false);
+        }
+    }
+
+    public static void takeGeneralShot(int shots){
+        if(shots == 1){
+            generalShot1.setVisible(false);
+        }else if(shots == 0){
+            generalShot2.setVisible(false);
+        }
+    }
+
+    public static void takeRanchShot(int shots){
+        if(shots == 1){
+            ranchShot1.setVisible(false);
+        }else if(shots == 0){
+            ranchShot2.setVisible(false);
+        }
+    }
+
+    public static void takeSecretShot(int shots){
+        if(shots == 2){
+            secretShot1.setVisible(false);
+        }else if(shots == 1){
+            secretShot2.setVisible(false);
+        }else if(shots == 0){
+            secretShot3.setVisible(false);
+        }
+    }
+
+    public static void takeChurchShot(int shots){
+        if(shots == 1){
+            churchShot1.setVisible(false);
+        }else if(shots == 0){
+            churchShot2.setVisible(false);
+        }
+    }
+
+    public static void takeBankShot(int shots){
+      if(shots == 0){
+            bankShot1.setVisible(false);
+        }
+    }
+
+
 
     public static void moveTrain(Player player){
         for(int i = 0; i < actors.size(); i++){

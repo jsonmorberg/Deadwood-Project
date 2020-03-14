@@ -9,6 +9,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/* View window for upgrade choices */
+
 public class UpgradeView {
 
     public static void display(Player player){
@@ -32,42 +34,52 @@ public class UpgradeView {
 
         rank2Money.setOnAction(e->{
             CastingOffice.upgrade(new int[]{1, 2, 4}, player);
+            window.close();
         });
 
         rank3Money.setOnAction(e->{
             CastingOffice.upgrade(new int[]{1, 3, 10}, player);
+            window.close();
         });
 
         rank4Money.setOnAction(e->{
             CastingOffice.upgrade(new int[]{1, 4, 18}, player);
+            window.close();
         });
 
         rank5Money.setOnAction(e->{
             CastingOffice.upgrade(new int[]{1, 5, 28}, player);
+            window.close();
         });
 
         rank6Money.setOnAction(e->{
             CastingOffice.upgrade(new int[]{1, 6, 40}, player);
+            window.close();
         });
 
         rank2Credit.setOnAction(e->{
             CastingOffice.upgrade(new int[]{0, 2, 5}, player);
+            window.close();
         });
 
         rank3Credit.setOnAction(e->{
             CastingOffice.upgrade(new int[]{0, 3, 10}, player);
+            window.close();
         });
 
         rank4Credit.setOnAction(e->{
             CastingOffice.upgrade(new int[]{0, 4, 15}, player);
+            window.close();
         });
 
         rank5Credit.setOnAction(e->{
             CastingOffice.upgrade(new int[]{0, 5, 20}, player);
+            window.close();
         });
 
         rank6Credit.setOnAction(e->{
             CastingOffice.upgrade(new int[]{0, 6, 25}, player);
+            window.close();
         });
 
         if(player.getMoney() < 4){
@@ -109,6 +121,33 @@ public class UpgradeView {
         if(player.getCredit() < 25){
             rank6Credit.setDisable(true);
         }
+
+        if(player.getRank() >= 5) {
+            rank2Credit.setDisable(true);
+            rank2Money.setDisable(true);
+            rank3Credit.setDisable(true);
+            rank3Money.setDisable(true);
+            rank4Credit.setDisable(true);
+            rank4Money.setDisable(true);
+            rank5Credit.setDisable(true);
+            rank5Money.setDisable(true);
+        }else if(player.getRank() >= 4) {
+            rank2Credit.setDisable(true);
+            rank2Money.setDisable(true);
+            rank3Credit.setDisable(true);
+            rank3Money.setDisable(true);
+            rank4Credit.setDisable(true);
+            rank4Money.setDisable(true);
+        }else if(player.getRank() >= 3){
+            rank2Credit.setDisable(true);
+            rank2Money.setDisable(true);
+            rank3Credit.setDisable(true);
+            rank3Money.setDisable(true);
+        }else if(player.getRank() >= 2){
+            rank2Credit.setDisable(true);
+            rank2Money.setDisable(true);
+        }
+
 
         Button one = new Button("2");
         Button two = new Button("3");
@@ -152,10 +191,5 @@ public class UpgradeView {
         Scene sceneWindow = new Scene(pane);
         window.setScene(sceneWindow);
         window.showAndWait(); //needs to be closed before returning
-
-
-
-
-
     }
 }

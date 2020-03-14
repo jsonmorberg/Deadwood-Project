@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 import java.io.FileNotFoundException;
@@ -37,6 +38,7 @@ public class Deadwood extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("startup.fxml"));
         Scene deadwood = new Scene(root);
         stage.setScene(deadwood);
+        stage.initStyle(StageStyle.UTILITY);
         stage.show();
 
         AnchorPane board = FXMLLoader.load(getClass().getResource("board.fxml"));
@@ -54,7 +56,7 @@ public class Deadwood extends Application {
         }
 
         int credit = 0;
-        int rank = 1;
+        int rank = 6;
 
         switch(playerNum){
             case 5:
@@ -81,44 +83,6 @@ public class Deadwood extends Application {
         }
     }
 
-
-    //calculates the scores, announces winners, and ends game
-    private static void endGame(){
-        HashMap<Player,Integer> scores = new HashMap<Player,Integer>();
-        ArrayList<Player> winner = new ArrayList<Player>();
-        int highScore = 0;
-
-        //calculate scores and find highest score
-        for(Player player : players){
-            Player current = player;
-            int score = (current.getCredit()) + (current.getMoney()) + (5 * current.getRank());
-            scores.put(current, score);
-            if(score > highScore){
-                highScore = score;
-            }
-        }
-
-        //finds players with the highest score
-        for(Player player : scores.keySet()){
-            System.out.println(player.getName() + ": " + scores.get(player));
-            if(scores.get(player) == highScore){
-                winner.add(player);
-            }
-        }
-
-        //prints results to terminal
-        if(winner.size() > 1){
-            System.out.println("Its a Tie!");
-            for(Player player : winner){
-                System.out.print(player.getName() + " ");
-            }
-            System.out.print("won!");
-        }else{
-            System.out.println(winner.get(0).getName() + " won!");
-        }
-
-
-    }
     public static Board getBoard(){
         return board;
     }
@@ -127,6 +91,10 @@ public class Deadwood extends Application {
         Player player = players.poll();
         players.add(player);
         return player;
+    }
+
+    public static Queue<Player> getPlayers(){
+        return players;
     }
 
 
