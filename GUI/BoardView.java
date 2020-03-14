@@ -846,28 +846,21 @@ public class BoardView {
                     player2.setX(99);
                     player2.setY(342);
                 }else if(i == 2){
-                    player2.setX(99);
-                    player2.setY(342);
-
-                }else if(i == 3){
                     player3.setX(99);
                     player3.setY(342);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(99);
                     player4.setY(342);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(99);
                     player5.setY(342);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(99);
                     player6.setY(342);
 
-                }else if(i == 7){
-                    player7.setX(99);
-                    player7.setY(342);
                 }
             }
         }
@@ -883,28 +876,21 @@ public class BoardView {
                     player2.setX(268);
                     player2.setY(335);
                 }else if(i == 2){
-                    player2.setX(268);
-                    player2.setY(335);
-
-                }else if(i == 3){
                     player3.setX(268);
                     player3.setY(335);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(268);
                     player4.setY(335);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(268);
                     player5.setY(335);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(268);
                     player6.setY(335);
 
-                }else if(i == 7){
-                    player7.setX(268);
-                    player7.setY(335);
                 }
             }
         }
@@ -919,28 +905,21 @@ public class BoardView {
                     player2.setX(278);
                     player2.setY(712);
                 }else if(i == 2){
-                    player2.setX(278);
-                    player2.setY(712);
-
-                }else if(i == 3){
                     player3.setX(278);
                     player3.setY(712);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(278);
                     player4.setY(712);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(278);
                     player5.setY(712);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(278);
                     player6.setY(712);
 
-                }else if(i == 7){
-                    player7.setX(278);
-                    player7.setY(712);
                 }
             }
         }
@@ -955,28 +934,21 @@ public class BoardView {
                     player2.setX(923);
                     player2.setY(402);
                 }else if(i == 2){
-                    player2.setX(923);
-                    player2.setY(402);
-
-                }else if(i == 3){
                     player3.setX(923);
                     player3.setY(402);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(923);
                     player4.setY(402);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(923);
                     player5.setY(402);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(923);
                     player6.setY(402);
 
-                }else if(i == 7){
-                    player7.setX(923);
-                    player7.setY(402);
                 }
             }
         }
@@ -991,28 +963,21 @@ public class BoardView {
                     player2.setX(842);
                     player2.setY(342);
                 }else if(i == 2){
-                    player2.setX(842);
-                    player2.setY(342);
-
-                }else if(i == 3){
                     player3.setX(842);
                     player3.setY(342);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(842);
                     player4.setY(342);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(842);
                     player5.setY(342);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(842);
                     player6.setY(342);
 
-                }else if(i == 7){
-                    player7.setX(842);
-                    player7.setY(342);
                 }
             }
         }
@@ -1027,28 +992,21 @@ public class BoardView {
                     player2.setX(461);
                     player2.setY(146);
                 }else if(i == 2){
-                    player2.setX(461);
-                    player2.setY(146);
-
-                }else if(i == 3){
                     player3.setX(461);
                     player3.setY(146);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(461);
                     player4.setY(146);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(461);
                     player5.setY(146);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(461);
                     player6.setY(146);
 
-                }else if(i == 7){
-                    player7.setX(461);
-                    player7.setY(146);
                 }
             }
         }
@@ -1063,28 +1021,21 @@ public class BoardView {
                     player2.setX(278);
                     player2.setY(549);
                 }else if(i == 2){
-                    player2.setX(278);
-                    player2.setY(549);
-
-                }else if(i == 3){
                     player3.setX(278);
                     player3.setY(549);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(278);
                     player4.setY(549);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(278);
                     player5.setY(549);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(278);
                     player6.setY(549);
 
-                }else if(i == 7){
-                    player7.setX(278);
-                    player7.setY(549);
                 }
             }
         }
@@ -1099,28 +1050,21 @@ public class BoardView {
                     player2.setX(693);
                     player2.setY(580);
                 }else if(i == 2){
-                    player2.setX(693);
-                    player2.setY(580);
-
-                }else if(i == 3){
                     player3.setX(693);
                     player3.setY(580);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(693);
                     player4.setY(580);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(693);
                     player5.setY(580);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(693);
                     player6.setY(580);
 
-                }else if(i == 7){
-                    player7.setX(693);
-                    player7.setY(580);
                 }
             }
         }
@@ -1135,28 +1079,21 @@ public class BoardView {
                     player2.setX(744);
                     player2.setY(99);
                 }else if(i == 2){
-                    player2.setX(744);
-                    player2.setY(99);
-
-                }else if(i == 3){
                     player3.setX(744);
                     player3.setY(99);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(744);
                     player4.setY(99);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(744);
                     player5.setY(99);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(744);
                     player6.setY(99);
 
-                }else if(i == 7){
-                    player7.setX(744);
-                    player7.setY(99);
                 }
             }
         }
@@ -1171,28 +1108,21 @@ public class BoardView {
                     player2.setX(775);
                     player2.setY(412);
                 }else if(i == 2){
-                    player2.setX(775);
-                    player2.setY(412);
-
-                }else if(i == 3){
                     player3.setX(775);
                     player3.setY(412);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(775);
                     player4.setY(412);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(775);
                     player5.setY(412);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(775);
                     player6.setY(412);
 
-                }else if(i == 7){
-                    player7.setX(775);
-                    player7.setY(412);
                 }
             }
         }
@@ -1207,28 +1137,21 @@ public class BoardView {
                     player2.setX(967);
                     player2.setY(301);
                 }else if(i == 2){
-                    player2.setX(967);
-                    player2.setY(301);
-
-                }else if(i == 3){
                     player3.setX(967);
                     player3.setY(301);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(967);
                     player4.setY(301);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(967);
                     player5.setY(301);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(967);
                     player6.setY(301);
 
-                }else if(i == 7){
-                    player7.setX(967);
-                    player7.setY(301);
                 }
             }
         }
@@ -1243,28 +1166,21 @@ public class BoardView {
                     player2.setX(85);
                     player2.setY(468);
                 }else if(i == 2){
-                    player2.setX(85);
-                    player2.setY(468);
-
-                }else if(i == 3){
                     player3.setX(85);
                     player3.setY(468);
 
-                }else if(i == 4){
+                }else if(i == 3){
                     player4.setX(85);
                     player4.setY(468);
 
-                }else if(i == 5){
+                }else if(i == 4){
                     player5.setX(85);
                     player5.setY(468);
 
-                }else if(i == 6){
+                }else if(i == 5){
                     player6.setX(85);
                     player6.setY(468);
 
-                }else if(i == 7){
-                    player7.setX(85);
-                    player7.setY(468);
                 }
             }
         }
